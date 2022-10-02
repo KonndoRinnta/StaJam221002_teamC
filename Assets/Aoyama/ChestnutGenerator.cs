@@ -31,7 +31,10 @@ public class ChestnutGenerator : MonoBehaviour
         int generatePosNum;
         int chestNum;
 
-        _timer += Time.deltaTime;
+        if (TimeSystem._isGame)
+        {
+            _timer += Time.deltaTime;
+        }
 
         if (_timer > _generateInterval / 10)
         {
