@@ -34,6 +34,8 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _lastScore = ScoreSystem._score;
+
         _scoreTextList[2].gameObject.SetActive(false);
 
         LoadDate();
