@@ -9,16 +9,19 @@ public class PlayerScore : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == _damageTagName)
+        if (TimeSystem._isGame)
         {
-            Destroy(collision.gameObject);
-            ScoreSystem.DecreaseScore();
-        }
+            if (collision.gameObject.tag == _damageTagName)
+            {
+                Destroy(collision.gameObject);
+                ScoreSystem.DecreaseScore();
+            }
 
-        if (collision.gameObject.tag == _pointTagName)
-        {
-            Destroy(collision.gameObject);
-            ScoreSystem.AddScore();
+            if (collision.gameObject.tag == _pointTagName)
+            {
+                Destroy(collision.gameObject);
+                ScoreSystem.AddScore();
+            }
         }
     }
 }
