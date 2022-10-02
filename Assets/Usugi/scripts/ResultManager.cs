@@ -67,9 +67,15 @@ public class ResultManager : MonoBehaviour
             PlayerPrefs.SetInt($"HighScore", _lastScore);
         }
     }
-
-    void ChangeImage()
+    
+    /// <summary>
+    /// スコアを０に戻す
+    /// ボタンから設定
+    /// </summary>
+    public void ResetScore()
     {
+        PlayerPrefs.SetInt($"HighScore", 0);
 
+        _scoreTextList[0].text = $"ハイスコア：{0}";
     }
 }
