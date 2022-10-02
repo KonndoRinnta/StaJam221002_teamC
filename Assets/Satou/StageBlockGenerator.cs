@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 文字列からブロックを生成してステージを作る
+/// </summary>
 public class StageBlockGenerator : MonoBehaviour
 {
-    // 床となるブロック
+    /// <summary>床となるブロック</summary>
     [SerializeField] GameObject _floorBlock;
-    // ハーフブロックとなるブロック
+    /// <summary>ハーフブロックとなるブロック</summary>
     [SerializeField] GameObject _harfBlock;
+    /// <summary>プラットフォームとなるブロック</summary>
+    [SerializeField] GameObject _platformBlock;
 
     void Start()
     {
-        // 画面の半分の長さを取得する
-        int harf = /*Screen.width / 2*/ -1;
+        // XとY方向にそれぞれずらす
+        float offsetX = -8.5f;
+        float offsetY = -1.5f;
 
         StageStringGenerator ssg = GetComponent<StageStringGenerator>();
         if (ssg != null)
@@ -25,11 +31,18 @@ public class StageBlockGenerator : MonoBehaviour
                 {
                     if (str[i, j] == "F")
                     {
-                        Instantiate(_floorBlock, new Vector3(harf + j, -i, 0), Quaternion.identity);
+                        var go = Instantiate(_floorBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
+                        go.transform.SetParent(transform);
                     }
                     else if (str[i, j] == "H")
                     {
-                        Instantiate(_harfBlock, new Vector3(harf + j, -i, 0), Quaternion.identity);
+                        var go = Instantiate(_harfBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
+                        go.transform.SetParent(transform);
+                    }
+                    else if (str[i, j] == "P")
+                    {
+                        var go = Instantiate(_platformBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
+                        go.transform.SetParent(transform);
                     }
                 }
             }
@@ -42,6 +55,6 @@ public class StageBlockGenerator : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }

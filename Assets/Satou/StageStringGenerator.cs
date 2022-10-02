@@ -15,12 +15,12 @@ public class StageStringGenerator : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     /// <summary>マップの元になる文字列の二次元配列を生成する</summary>
@@ -94,7 +94,8 @@ public class StageStringGenerator : MonoBehaviour
             }
             // 1段目はランダムでハーフブロックにする
             // TODO:全部空になっているのでランダムでハーフブロックにする処理を作る
-            _stageStr[0, i] = "S";
+            bool isOneRowStep = Random.Range(0, 2) == 1 ? true : false;
+            _stageStr[0, i] = isOneRowStep ? "P" : "S";
         }
 
         // デバッグ用
