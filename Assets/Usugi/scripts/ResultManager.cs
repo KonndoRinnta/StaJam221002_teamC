@@ -4,18 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// スコアを表示するクラス
-/// 
-/// 機能
-/// スコアを受け取って表示する
-/// 
-/// MEMO
-/// 以前のスコア読み込む
-/// スコア受けとる
-/// リストに格納して整える
-/// 表示
-/// 保存
-/// 
+/// リザルト画面のマネージャー用クラス
+/// スコア表示関連を行う
 /// </summary>
 public class ResultManager : MonoBehaviour
 {
@@ -29,13 +19,10 @@ public class ResultManager : MonoBehaviour
     /// <summary>表示するテキストのリスト</summary>
     [SerializeField] List<Text> _scoreTextList;
 
-    [SerializeField] ResultUIManager _uImanager;
-
     // Start is called before the first frame update
     void Start()
     {
-        _lastScore = ScoreSystem._score;
-
+        //「最高記録」表示を消す
         _scoreTextList[2].gameObject.SetActive(false);
 
         LoadDate();
@@ -46,11 +33,28 @@ public class ResultManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 保存されている最高スコアをロードする
+    /// 保存されている最高スコアと直近のスコアをロードする
     /// </summary>
     void LoadDate()
     {
         _highScore = PlayerPrefs.GetInt("HighScore");
+
+        _lastScore = ScoreSystem._score;
+    }
+
+    /// <summary>
+    /// スコアをテキストにセットする
+    /// 最高スコアを更新したときは「最高記録」を表示する
+    /// </summary>
+    public void SetText()
+    {
+        _scoreTextList[0].text = $"ハイスコア：{_highScore}";
+        _scoreTextList[1].text = $"今回のスコア：{_lastScore}";
+
+        if (_lastScore >= _highScore)
+        {
+            _scoreTextList[2].gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -64,17 +68,8 @@ public class ResultManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// スコアをテキストにセットする
-    /// </summary>
-    public void SetText()
+    void ChangeImage()
     {
-        _scoreTextList[0].text = $"ハイスコア：{_highScore}";
-        _scoreTextList[1].text = $"今回のスコア：{_lastScore}";
 
-        if (_lastScore >= _highScore)
-        {
-            _scoreTextList[2].gameObject.SetActive(true);
-        }
     }
 }
