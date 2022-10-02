@@ -172,8 +172,8 @@ GameObject:
   - component: {fileID: 6176995839926168970}
   - component: {fileID: 6176995839926168966}
   - component: {fileID: 6176995839926168964}
-  - component: {fileID: 6176995839926168967}
   - component: {fileID: 8282273814726165421}
+  - component: {fileID: 1106673622}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 6176995839926168973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.42260385, y: 0.37063405, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6176995840749055993}
@@ -276,8 +276,8 @@ MonoBehaviour:
   - {fileID: 6176995839104081234}
   - {fileID: 6176995839395584390}
   m_Bounds:
-    m_Center: {x: 0.04632616, y: -0.010614395, z: 0}
-    m_Extent: {x: 3.3334055, y: 4.8856153, z: 0}
+    m_Center: {x: 0.046325922, y: -0.010614872, z: 0}
+    m_Extent: {x: 3.333405, y: 4.8856153, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -313,8 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06070688aad61784fab3df528502cfa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 20
-  _jumpPower: 30
+  _moveSpeed: 5
+  _jumpPower: 20
   _jumpLimit: 1
 --- !u!50 &6176995839926168964
 Rigidbody2D:
@@ -337,32 +337,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6176995839926168967
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6176995839926168973}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.09, y: 0.17}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.94, y: 10.03}
-    newSize: {x: 6.94, y: 10.03}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.77, y: 9.25}
-  m_EdgeRadius: 0
 --- !u!114 &8282273814726165421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +349,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a8b05b5ece8834985b3e3e6699e47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageTagName: Damage
+  _pointTagName: Point
+--- !u!70 &1106673622
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176995839926168973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: f01ef3f3494a2374bac84d8fd43d2863, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.38, y: 0.14}
+  m_Size: {x: 4.27, y: 9.38}
+  m_Direction: 0
 --- !u!1 &6176995840050873240
 GameObject:
   m_ObjectHideFlags: 0
