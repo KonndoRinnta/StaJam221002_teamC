@@ -12,7 +12,8 @@ public class PlayerMove : MonoBehaviour
     [Tooltip("x軸の入力判定")] float _inputX;
     [Tooltip("Flipのために値を保存しておく用の変数")] float _x = 1;
     [Tooltip("ジャンプの入力判定")] bool _isJump;
-    [Tooltip("接地判定")] bool _isGround;
+
+    [SerializeField] AudioSource _audio;
 
     Rigidbody2D _rb;
     SpriteRenderer _spriteRenderer;
@@ -79,7 +80,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (_jumpCount < _jumpLimit && !_isJump)
             {
-                Debug.Log("ジャンプしました");
+                _audio.Play();
                 _rb.velocity = Vector2.zero;
                 _rb.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
                 _isJump = true;

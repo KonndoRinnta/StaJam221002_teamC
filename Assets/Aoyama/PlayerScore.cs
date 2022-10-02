@@ -6,6 +6,7 @@ public class PlayerScore : MonoBehaviour
 {
     [SerializeField] string _damageTagName = "Damage";
     [SerializeField] string _pointTagName = "Point";
+    [SerializeField] AudioSource _audio;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,12 +16,14 @@ public class PlayerScore : MonoBehaviour
             {
                 Destroy(collision.gameObject);
                 ScoreSystem.DecreaseScore();
+                _audio.Play();
             }
 
             if (collision.gameObject.tag == _pointTagName)
             {
                 Destroy(collision.gameObject);
                 ScoreSystem.AddScore();
+                _audio.Play();
             }
         }
     }

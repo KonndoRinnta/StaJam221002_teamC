@@ -12,6 +12,7 @@ public class TimeSystem : MonoBehaviour
     [SerializeField, Tooltip("")] float _endTime;
     [SerializeField, Tooltip("")] float _finishDelayTime = 2f;
     [SerializeField, Tooltip("")] string _resultSceneName;
+    [SerializeField] GameObject _gameOverSound;
 
     float _countDown = 3.5f;
     float _timer;
@@ -23,6 +24,7 @@ public class TimeSystem : MonoBehaviour
     void Awake()
     {
         _timer = _endTime;
+        _gameOverSound.SetActive(false);
     }
 
 
@@ -61,6 +63,7 @@ public class TimeSystem : MonoBehaviour
         {
             //タイマーが０になったらゲーム終了
             _timerText.text = "0000";
+            _gameOverSound.SetActive(true);
             StartCoroutine(GameOver());
         }
     }

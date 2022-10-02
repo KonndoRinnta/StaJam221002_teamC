@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Kondo/Title.unity
+    guid: 5399170d79662124596ea9c8b32833cc
+  - enabled: 1
     path: Assets/Satou/SatouScene.unity
     guid: 080a2f496e9cf9f4487362b6e49f2238
   - enabled: 1
