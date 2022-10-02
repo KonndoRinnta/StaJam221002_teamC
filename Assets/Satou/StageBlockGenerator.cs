@@ -29,21 +29,24 @@ public class StageBlockGenerator : MonoBehaviour
             {
                 for (int j = 0; j < str.GetLength(1); j++)
                 {
+                    // 文字によって生成するブロックを変える
+                    GameObject block = null;
                     if (str[i, j] == "F")
-                    {
-                        var go = Instantiate(_floorBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
-                        go.transform.SetParent(transform);
-                    }
+                        block = _floorBlock;
                     else if (str[i, j] == "H")
-                    {
-                        var go = Instantiate(_harfBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
-                        go.transform.SetParent(transform);
-                    }
+                        block = _harfBlock;
                     else if (str[i, j] == "P")
+                        block = _platformBlock;
+
+                    if (!block)
                     {
-                        var go = Instantiate(_platformBlock, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
-                        go.transform.SetParent(transform);
+                        Debug.LogWarning("ブロックを生成できませんでした。対応する文字がないです。");
+                        continue;
                     }
+
+                    // ブロックを生成して親を登録する
+                    var go = Instantiate(block, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
+                    go.transform.SetParent(transform);
                 }
             }
         }
