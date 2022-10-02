@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 731733812406135271, guid: 2d9c1fad524355640b55120561fb1013, type: 3}
+      propertyPath: _generateMaxInterval
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 731733812406135271, guid: 2d9c1fad524355640b55120561fb1013, type: 3}
+      propertyPath: _generateMinInterval
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 731733812547353135, guid: 2d9c1fad524355640b55120561fb1013, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -349,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2713789265673789253, guid: 37e8add3bdceec145be7f86fa4509907, type: 3}
       propertyPath: _endTime
-      value: 99
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2713789265673789253, guid: 37e8add3bdceec145be7f86fa4509907, type: 3}
       propertyPath: _gameOverSound
@@ -467,6 +475,10 @@ PrefabInstance:
     - target: {fileID: 6176995839926168964, guid: 1976ccc284aea594dafcd8abf6a01127, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176995839926168966, guid: 1976ccc284aea594dafcd8abf6a01127, type: 3}
+      propertyPath: _moveSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6176995839926168969, guid: 1976ccc284aea594dafcd8abf6a01127, type: 3}
       propertyPath: m_RootOrder
