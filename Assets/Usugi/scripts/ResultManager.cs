@@ -17,7 +17,7 @@ using UnityEngine.UI;
 /// 保存
 /// 
 /// </summary>
-public class Score : MonoBehaviour
+public class ResultManager : MonoBehaviour
 {
     /// <summary>ハイスコア</summary>
     [SerializeField] int _highScore;
@@ -49,7 +49,7 @@ public class Score : MonoBehaviour
     }
 
     /// <summary>
-    /// データをロードする
+    /// 保存されている最高スコアをロードする
     /// </summary>
     void LoadDate()
     {
