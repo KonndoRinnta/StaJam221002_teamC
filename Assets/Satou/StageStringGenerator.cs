@@ -53,28 +53,26 @@ public class StageStringGenerator : MonoBehaviour
         {
             // 画面左端なら
             if (i == 0)
-                SetTwoRow(() => _stageStr[2, 0] == "F" && _stageStr[2, 1] == "F", index: 0);
+                SetHarfBlock(() => _stageStr[2, 0] == "F" && _stageStr[2, 1] == "F", index: 0);
             // 画面右端なら
             else if (i == _width - 1)
-                SetTwoRow(() => _stageStr[2, _width - 1] == "F" && _stageStr[2, _width - 2] == "F", index: _width - 1);
+                SetHarfBlock(() => _stageStr[2, _width - 1] == "F" && _stageStr[2, _width - 2] == "F", index: _width - 1);
             // 画面端以外なら
-            //else
-            //    SetTwoRow(() => _stageStr[2, i - 1] == "F" && _stageStr[2, i] == "F" && _stageStr[2, i + 1] == "F", index: i);
+            else
+                _stageStr[1, i] = "S";
         }
 
         DispDebugLog();
         return _stageStr;
     }
 
-    /// <summary>2段目はブロックの位置によって条件が変わるので関数にする</summary>
-    void SetTwoRow(System.Func<bool> Condition, int index)
+    /// <summary>2段目の端は3段目の端と内側1ブロックが床ならハーフブロックを置く</summary>
+    void SetHarfBlock(System.Func<bool> Condition, int index)
     {
-        // 真下とその左右が床なら
         if (Condition.Invoke())
         {
-            // ランダムでハーフブロックにする
-            //bool isSecondRowStep = Random.Range(0, 2) == 1 ? true : false;
-            _stageStr[1, index] = /*isSecondRowStep*/true ? "H" : "S";
+            // ハーフブロックにする
+            _stageStr[1, index] = "H";
         }
         else
         {

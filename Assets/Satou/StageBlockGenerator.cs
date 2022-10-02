@@ -40,13 +40,10 @@ public class StageBlockGenerator : MonoBehaviour
 
                     if (!block)
                     {
-                        Debug.LogWarning("ブロックを生成できませんでした。対応する文字がないです。");
-                        continue;
+                        // ブロックを生成して親を登録する
+                        var go = Instantiate(block, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
+                        go.transform.SetParent(transform);
                     }
-
-                    // ブロックを生成して親を登録する
-                    var go = Instantiate(block, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
-                    go.transform.SetParent(transform);
                 }
             }
         }
