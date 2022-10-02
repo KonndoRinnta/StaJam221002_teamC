@@ -38,7 +38,7 @@ public class StageBlockGenerator : MonoBehaviour
                     else if (str[i, j] == "P")
                         block = _platformBlock;
 
-                    if (!block)
+                    if (block != null)
                     {
                         // ブロックを生成して親を登録する
                         var go = Instantiate(block, new Vector3(offsetX + j, -1 * i + offsetY, 0), Quaternion.identity);
