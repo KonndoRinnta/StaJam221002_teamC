@@ -58,8 +58,8 @@ public class StageStringGenerator : MonoBehaviour
             else if (i == _width - 1)
                 SetTwoRow(() => _stageStr[2, _width - 1] == "F" && _stageStr[2, _width - 2] == "F", index: _width - 1);
             // ‰æ–Ê’[ˆÈŠO‚È‚ç
-            else
-                SetTwoRow(() => _stageStr[2, i - 1] == "F" && _stageStr[2, i] == "F" && _stageStr[2, i + 1] == "F", index: i);
+            //else
+            //    SetTwoRow(() => _stageStr[2, i - 1] == "F" && _stageStr[2, i] == "F" && _stageStr[2, i + 1] == "F", index: i);
         }
 
         DispDebugLog();
