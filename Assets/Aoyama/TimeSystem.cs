@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TimeManager : MonoBehaviour
+public class TimeSystem : MonoBehaviour
 {
     [SerializeField, Tooltip("")] Text _timerText;
     [SerializeField, Tooltip("")] Text _countDownText;

@@ -10,43 +10,58 @@ public class PlayerMove : MonoBehaviour
 
     [Tooltip("ジャンプの回数")] int _jumpCount;
     [Tooltip("x軸の入力判定")] float _inputX;
-    [Tooltip("ジャンプの入力判定")] bool _inputJump;
+    [Tooltip("Flipのために値を保存しておく用の変数")] float _x = 1;
+    [Tooltip("ジャンプの入力判定")] bool _isJump;
     [Tooltip("接地判定")] bool _isGround;
 
     Rigidbody2D _rb;
+    SpriteRenderer _spriteRenderer;
     Animator _animator;
-    
+
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
     }
 
-    
+
     void Update()
     {
         _inputX = Input.GetAxisRaw("Horizontal");
-        
-        if (Input.GetButtonDown("Jump"))
-        {
-            _inputJump = true;
-            _jumpCount++;
-        }
-        else
-        {
-            _inputJump = false;
-        }
 
-        _animator.SetFloat("MoveX", _rb.velocity.x);
-        _animator.SetFloat("MoveY", _rb.velocity.y);
+        Jump();
     }
 
 
     void FixedUpdate()
     {
         MoveHorizontal();
-        Jump();
+        PlayerFlip();
+
+        //Animatorの処理
+        _animator.SetFloat("MoveX", _rb.velocity.x);
+        _animator.SetBool("IsJump", _isJump);
+    }
+
+
+    /// <summary>プレイヤーを回転させるメソッド</summary>
+    void PlayerFlip()
+    {
+        if (_inputX != 0)
+        {
+            _x = _inputX;
+        }
+
+        if (_x > 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else
+        {
+            _spriteRenderer.flipX = false;
+        }
     }
 
 
@@ -60,9 +75,16 @@ public class PlayerMove : MonoBehaviour
     /// <summary>ジャンプの処理を行うメソッド</summary>
     void Jump()
     {
-        if (_jumpCount < _jumpLimit)
+        if (Input.GetButtonDown("Jump"))
         {
-            _rb.AddForce(transform.up * _jumpPower);
+            if (_jumpCount < _jumpLimit && !_isJump)
+            {
+                Debug.Log("ジャンプしました");
+                _rb.velocity = Vector2.zero;
+                _rb.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+                _isJump = true;
+                _jumpCount++;
+            }
         }
     }
 
@@ -73,6 +95,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _jumpCount = 0;
+            _isJump = false;
         }
     }
 }
