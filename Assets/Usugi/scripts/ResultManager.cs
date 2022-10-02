@@ -29,23 +29,18 @@ public class ResultManager : MonoBehaviour
     /// <summary>表示するテキストのリスト</summary>
     [SerializeField] List<Text> _scoreTextList;
 
+    [SerializeField] ResultUIManager _uImanager;
+
     // Start is called before the first frame update
     void Start()
     {
+        _scoreTextList[2].gameObject.SetActive(false);
+
         LoadDate();
 
         SetText();
 
         SaveDate();
-    }
-
-    /// <summary>
-    /// スコアをテキストにセットする
-    /// </summary>
-    private void SetText()
-    {
-        _scoreTextList[0].text = $"ハイスコア：{_highScore}";
-        _scoreTextList[1].text = $"スコア：{_lastScore}";
     }
 
     /// <summary>
@@ -64,6 +59,20 @@ public class ResultManager : MonoBehaviour
         if (_lastScore > _highScore)
         {
             PlayerPrefs.SetInt($"HighScore", _lastScore);
+        }
+    }
+
+    /// <summary>
+    /// スコアをテキストにセットする
+    /// </summary>
+    public void SetText()
+    {
+        _scoreTextList[0].text = $"ハイスコア：{_highScore}";
+        _scoreTextList[1].text = $"今回のスコア：{_lastScore}";
+
+        if (_lastScore >= _highScore)
+        {
+            _scoreTextList[2].gameObject.SetActive(true);
         }
     }
 }

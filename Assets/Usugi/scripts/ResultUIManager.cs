@@ -11,6 +11,8 @@ public class ResultUIManager : MonoBehaviour
     /// <summary>表示するテキストのリスト</summary>
     [SerializeField] List<Text> _scoreTextList;
 
+    [SerializeField] 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,14 @@ public class ResultUIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// スコアをテキストにセットする
+    /// </summary>
+    public void SetText()
+    {
+        //_scoreTextList[0].text = $"ハイスコア：{_highScore}";
+        //_scoreTextList[1].text = $"スコア：{_lastScore}";
     }
 }
