@@ -34,7 +34,7 @@ public class StageStringGenerator : MonoBehaviour
 
         for (int i = 0; i < _width; i++)
         {
-            // F:床 S:空間 H:ハーフブロック
+            // F:床 S:空間 H:ハーフブロック P:プラットフォーム
 
             // 4段目を全部床にする
             _stageStr[3, i] = "F";
@@ -43,7 +43,14 @@ public class StageStringGenerator : MonoBehaviour
             bool isThirdRowStep = Random.Range(0, 2) == 1 ? true : false;
             _stageStr[2, i] = isThirdRowStep ? "F" : "S";
 
-            // 2段目は真下とその左右が床ならランダムでハーフブロックにする
+            // 1段目はランダムでプラットフォームブロックにする
+            bool isOneRowStep = Random.Range(0, 2) == 1 ? true : false;
+            _stageStr[0, i] = isOneRowStep ? "P" : "S";
+        }
+
+        // 2段目は真下とその左右が床ならランダムでハーフブロックにする
+        for (int i = 0; i < _width; i++)
+        {
             // 画面左端なら
             if (i == 0)
                 SetTwoRow(() => _stageStr[2, 0] == "F" && _stageStr[2, 1] == "F", index: 0);
@@ -53,10 +60,6 @@ public class StageStringGenerator : MonoBehaviour
             // 画面端以外なら
             else
                 SetTwoRow(() => _stageStr[2, i - 1] == "F" && _stageStr[2, i] == "F" && _stageStr[2, i + 1] == "F", index: i);
-
-            // 1段目はランダムでプラットフォームブロックにする
-            bool isOneRowStep = Random.Range(0, 2) == 1 ? true : false;
-            _stageStr[0, i] = isOneRowStep ? "P" : "S";
         }
 
         DispDebugLog();
@@ -70,8 +73,8 @@ public class StageStringGenerator : MonoBehaviour
         if (Condition.Invoke())
         {
             // ランダムでハーフブロックにする
-            bool isSecondRowStep = Random.Range(0, 2) == 1 ? true : false;
-            _stageStr[1, index] = isSecondRowStep ? "H" : "S";
+            //bool isSecondRowStep = Random.Range(0, 2) == 1 ? true : false;
+            _stageStr[1, index] = /*isSecondRowStep*/true ? "H" : "S";
         }
         else
         {
