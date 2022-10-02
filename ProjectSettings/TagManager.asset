@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Damage
+  - Point
   layers:
   - Default
   - TransparentFX
